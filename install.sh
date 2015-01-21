@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# Monitor Install Script 
+# MoniC Server Install Script 
 #
 #####################################################################################
 # V1.0 s.chabrolles@fr.ibm.com
@@ -17,11 +17,11 @@ sudo pip install -U fig
 
 [ ! -d /var/lib/elasticsearch ] && sudo mkdir -p /var/lib/elasticsearch
 
-[ ! -d /etc/monitor ] && sudo mkdir -p /etc/monitor
-sudo cp fig.yml /etc/monitor
+[ ! -d /etc/MoniC ] && sudo mkdir -p /etc/MoniC
+sudo cp fig.yml /etc/MoniC
 
-sudo cp monitor_rc /etc/init.d/monitor
-sudo chmod 755 /etc/init.d/monitor
-sudo update-rc.d monitor defaults
+sudo cp MoniC_rc /etc/init.d/MoniC
+sudo chmod 755 /etc/init.d/MoniC
+sudo update-rc.d MoniC defaults
 
-sudo fig -f /etc/monitor/fig.yml -p monitor up -d
+sudo fig -f /etc/MoniC/fig.yml -p MoniC up -d
