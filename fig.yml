@@ -3,7 +3,7 @@ graphite:
  name: graphite
  hostname: graphite
  volumes:
-  - /var/lib/graphite/storage:/opt/graphite/storage
+  - /var/lib/graphite/storage/whisper:/opt/graphite/storage/whisper
  ports:
   - "2003:2003"
 
