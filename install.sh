@@ -1,6 +1,6 @@
 #!/bin/sh
 #
-# MoniC Server Install Script 
+# LiMon Server Install Script 
 #
 #####################################################################################
 # V1.0 s.chabrolles@fr.ibm.com
@@ -17,11 +17,11 @@ sudo pip install -U fig
 
 [ ! -d /var/lib/elasticsearch ] && sudo mkdir -p /var/lib/elasticsearch
 
-[ ! -d /etc/MoniC ] && sudo mkdir -p /etc/MoniC
-sudo cp fig.yml /etc/MoniC
+[ ! -d /etc/LiMon ] && sudo mkdir -p /etc/LiMon
+sudo cp fig.yml /etc/LiMon
 
-sudo cp MoniC_rc /etc/init.d/MoniC
-sudo chmod 755 /etc/init.d/MoniC
-sudo update-rc.d MoniC defaults
+sudo cp LiMon_rc /etc/init.d/LiMon
+sudo chmod 755 /etc/init.d/LiMon
+sudo update-rc.d LiMon defaults
 
-sudo fig -f /etc/MoniC/fig.yml -p MoniC up -d
+sudo fig -f /etc/LiMon/fig.yml -p LiMon up -d

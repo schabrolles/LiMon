@@ -1,0 +1,44 @@
+#!/bin/sh
+set -e
+
+### BEGIN INIT INFO
+# Provides:           LiMon
+# Required-Start:     $docker
+# Required-Stop:      $docker
+# Default-Start:      2 3 4 5
+# Default-Stop:       0 1 6
+# Short-Description:  LiMoning Center based on docker image with Graphite, ElasticSearch anf Grafana
+# Description:
+### END INIT INFO
+
+export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
+
+figconf=/etc/LiMon/fig.yml
+
+case "$1" in
+	start)
+		[ -f $figconf ] && fig -f $figconf -p LiMon start
+		;;
+
+	stop)
+		[ -f $figconf ] && fig -f $figconf -p LiMon stop	
+		;;
+
+	restart)
+		[ -f $figconf ] && fig -f $figconf -p LiMon restart
+		;;
+
+	logs)
+		[ -f $figconf ] && fig -f $figconf -p LiMon logs
+		;;
+
+	status)
+		
+		[ -f $figconf ] && fig -f $figconf -p LiMon ps
+		;;
+
+	*)
+		echo "Usage: $0 {start|stop|restart|status|logs}"
+		exit 1
+		;;
+esac
