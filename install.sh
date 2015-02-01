@@ -18,10 +18,10 @@ echo "############################################"
 echo "Install docker"
 echo
 
-sudo dpkg -i ./lxc-docker-1.3.1-dev_1.3.1-dev-20150109131959-dddf5c9-dirty_ppc64el.deb
+sudo dpkg -i ./docker.io-1.4.1-dev_ppc64el.deb
 sudo gpasswd -a ibmadmin docker
 
-sudo apt-get install -y python-pip
+sudo apt-get install -y python-pip python-whisper
 
 sudo pip install -U fig 
 
