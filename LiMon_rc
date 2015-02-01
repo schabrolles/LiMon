@@ -36,6 +36,13 @@ case "$1" in
 		
 		[ -f $figconf ] && fig -f $figconf -p LiMon ps
 		;;
+	
+	recreate)
+                if [ -f $figconf ] ; then
+                        fig -f $figconf -p LiMon stop
+                        fig -f $figconf -p LiMon up -d
+                fi
+                ;;
 
 	*)
 		echo "Usage: $0 {start|stop|restart|status|logs}"
