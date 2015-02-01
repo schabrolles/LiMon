@@ -44,6 +44,15 @@ case "$1" in
                 fi
                 ;;
 
+        upgrade)
+                if [ -f $figconf ] ; then
+                        fig -f $figconf pull
+                        echo
+                        echo "if one image was updated, please run \"$0 recreate\""
+                        echo
+                fi
+                ;;
+
 	*)
 		echo "Usage: $0 {start|stop|restart|status|logs}"
 		exit 1
