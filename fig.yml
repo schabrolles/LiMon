@@ -1,5 +1,11 @@
+memcached:
+ image: schabrolles/memcached
+ name: memcached
+ hostname: memcached
+
+
 graphite:
- image: schabrolles/graphite_ppc64le
+ image: schabrolles/graphite_memcache_ppc64le
  name: graphite
  hostname: graphite
  volumes:
