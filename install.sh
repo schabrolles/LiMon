@@ -66,5 +66,8 @@ sudo fig -f /etc/LiMon/fig.yml -p LiMon up -d
 
 sudo service LiMon status
 
+echo 
+echo "Installation complete. open a browser and connect to your server IP with http://<your_server_ip>"
+
 echo
 echo "If you are not root, please relogin to unable docker privileges"

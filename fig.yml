@@ -1,21 +1,28 @@
+memcached:
+ image: schabrolles/memcached
+ name: memcached
+ hostname: memcached
+
 graphite:
- image: schabrolles/graphite_ppc64le
+ image: schabrolles/graphite_memcache
  name: graphite
  hostname: graphite
  volumes:
   - /var/lib/graphite/storage/whisper:/opt/graphite/storage/whisper
  ports:
   - "2003:2003"
+ links:
+  - memcached:memcached
 
 elasticsearch:
- image: schabrolles/elasticsearch_ppc64le
+ image: schabrolles/elasticsearch
  name: elasticsearch
  hostname: elasticsearch
  volumes: 
   - /var/lib/elasticsearch:/var/lib/elasticsearch
 
 grafana:
- image: schabrolles/grafana_ppc64le
+ image: schabrolles/grafana
  name: grafana
  hostname: grafana
  links:
@@ -25,7 +32,7 @@ grafana:
   - "80:80"
 
 statsd:
- image: schabrolles/statsd_ppc64le
+ image: schabrolles/statsd
  name: statsd
  hostname: statsd
  links:
