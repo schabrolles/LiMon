@@ -4,7 +4,7 @@ memcached:
  hostname: memcached
 
 graphite:
- image: schabrolles/graphite_memcache
+ image: schabrolles/graphite
  name: graphite
  hostname: graphite
  volumes:
