@@ -24,6 +24,7 @@ echo "Update ubuntu apt cache"
 echo
 
 sudo apt-get update
+sudo apt-get install -y curl
 
 echo
 echo "############################################"
@@ -33,7 +34,7 @@ echo
 USER=`whoami`
 
 case $SYS_ARCH in 
-	x86_64) sudo apt-get install -y docker.io 
+	x86_64) curl -sSL https://get.docker.com/ubuntu/ | sudo sh
 	;;
 	
 	ppc64le) sudo dpkg -i ./docker.io-1.4.1-dev_ppc64el.deb
