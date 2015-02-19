@@ -32,10 +32,19 @@ echo
 
 USER=`whoami`
 
-if [ "$SYS_ARCH" == "ppc64le" ] ; then
-	sudo dpkg -i ./docker.io-1.4.1-dev_ppc64el.deb
-	sudo gpasswd -a $USER docker
-fi
+case $SYS_ARCH in 
+	x86_64) sudo apt-get install -y docker.io 
+	;;
+	
+	ppc64le) sudo dpkg -i ./docker.io-1.4.1-dev_ppc64el.deb
+	;;
+	
+	*) echo "Arch $SYS_ARCH not supported" 
+	exit 1
+	;;
+esac
+
+sudo gpasswd -a $USER docker
 
 sudo apt-get install -y python-pip python-whisper
 sudo pip install -U fig 
@@ -50,7 +59,7 @@ echo
 [ ! -d /var/lib/graphite/storage/whisper ] && sudo mkdir -p /var/lib/graphite/storage/whisper
 
 [ ! -d /etc/LiMon ] && sudo mkdir -p /etc/LiMon
-sudo cp fig.yml_$SYS_ARCH /etc/LiMon
+sudo cp fig.yml_${SYS_ARCH} /etc/LiMon/fig.yml
 
 sudo cp LiMon_rc /etc/init.d/LiMon
 sudo chmod 755 /etc/init.d/LiMon
