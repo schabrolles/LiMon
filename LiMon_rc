@@ -36,9 +36,25 @@ case "$1" in
 		
 		[ -f $figconf ] && fig -f $figconf -p LiMon ps
 		;;
+	
+	recreate)
+                if [ -f $figconf ] ; then
+                        fig -f $figconf -p LiMon stop
+                        fig -f $figconf -p LiMon up -d
+                fi
+                ;;
+
+        upgrade)
+                if [ -f $figconf ] ; then
+                        fig -f $figconf pull
+                        echo
+                        echo "if one image was updated, please run \"$0 recreate\""
+                        echo
+                fi
+                ;;
 
 	*)
-		echo "Usage: $0 {start|stop|restart|status|logs}"
+		echo "Usage: $0 {start|stop|restart|status|logs|upgrade}"
 		exit 1
 		;;
 esac
