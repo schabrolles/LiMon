@@ -14,22 +14,16 @@ graphite:
  links:
   - memcached:memcached
 
-elasticsearch:
- image: schabrolles/elasticsearch_ppc64le
- name: elasticsearch
- hostname: elasticsearch
+grafana2:
+ image: schabrolles/grafana2_ppc64le:alpha
+ name: grafana2
+ hostname: grafana2
  volumes: 
-  - /var/lib/elasticsearch:/var/lib/elasticsearch
-
-grafana:
- image: schabrolles/grafana_ppc64le
- name: grafana
- hostname: grafana
+  - /var/lib/grafana:/var/lib/grafana
  links:
-  - elasticsearch:elasticsearch
   - graphite:graphite
  ports:
-  - "80:80"
+  - "80:3000"
 
 statsd:
  image: schabrolles/statsd_ppc64le

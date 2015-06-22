@@ -5,6 +5,7 @@
 #####################################################################################
 # v1.0 s.chabrolles@fr.ibm.com
 # v1.5 Added mutli-arch (x86_64 ppc64le) support
+# v2.0 migrate to grafana 2.0 and ubuntu 15.04	
 ##################################################################################### 
 
 . /etc/os-release
@@ -37,7 +38,7 @@ case $SYS_ARCH in
 	x86_64) curl -sSL https://get.docker.com/ubuntu/ | sudo sh
 	;;
 	
-	ppc64le) sudo dpkg -i ./docker.io-1.4.1-dev_ppc64el.deb
+	ppc64le) sudo apt-get update && sudo apt-get upgrade && sudo apt-get -y install docker.io
 	;;
 	
 	*) echo "Arch $SYS_ARCH not supported" 
@@ -46,6 +47,9 @@ case $SYS_ARCH in
 esac
 
 sudo gpasswd -a $USER docker
+sudo systemctl enable docker
+sudo systemctl start docker
+
 
 sudo apt-get install -y python-pip python-whisper
 sudo pip install -U fig 
@@ -56,7 +60,8 @@ echo "Prepare Environment "
 echo
 
 
-[ ! -d /var/lib/elasticsearch ] && sudo mkdir -p /var/lib/elasticsearch
+[ ! -d /var/lib/grafana/dashboards ] && sudo mkdir -p /var/lib/grafana/dashboards
+[ -f grafana.db ] && cp -rp grafana.db /var/lib/grafana
 [ ! -d /var/lib/graphite/storage/whisper ] && sudo mkdir -p /var/lib/graphite/storage/whisper
 
 [ ! -d /etc/LiMon ] && sudo mkdir -p /etc/LiMon
@@ -66,19 +71,19 @@ sudo cp LiMon_rc /etc/init.d/LiMon
 sudo chmod 755 /etc/init.d/LiMon
 sudo update-rc.d LiMon defaults
 
-echo
-echo "############################################"
-echo "Install debug tool nsenter"
-echo
+#echo
+#echo "############################################"
+#echo "Install debug tool nsenter"
+#echo
 
-cd /tmp
-curl https://www.kernel.org/pub/linux/utils/util-linux/v2.24/util-linux-2.24.tar.gz | tar -zxf-
-cd util-linux-2.24
-./configure --without-ncurses
-make nsenter
-[ $? -eq 0 ] && (echo ; echo "success" )
-sudo cp nsenter /usr/local/bin
-[ $? -eq 0 ] && (echo ; echo "success" )
+#cd /tmp
+#curl https://www.kernel.org/pub/linux/utils/util-linux/v2.24/util-linux-2.24.tar.gz | tar -zxf-
+#cd util-linux-2.24
+#./configure --without-ncurses
+#make nsenter
+#[ $? -eq 0 ] && (echo ; echo "success" )
+#sudo cp nsenter /usr/local/bin
+#[ $? -eq 0 ] && (echo ; echo "success" )
 
 
 

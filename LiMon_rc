@@ -32,7 +32,7 @@ case "$1" in
 		[ -f $figconf ] && fig -f $figconf -p LiMon logs
 		;;
 
-	status)
+	check)
 		
 		[ -f $figconf ] && fig -f $figconf -p LiMon ps
 		;;
@@ -54,7 +54,7 @@ case "$1" in
                 ;;
 
 	*)
-		echo "Usage: $0 {start|stop|restart|status|logs|upgrade}"
+		echo "Usage: $0 {start|stop|restart|status|check|logs|upgrade}"
 		exit 1
 		;;
 esac
