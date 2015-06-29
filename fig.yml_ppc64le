@@ -15,7 +15,7 @@ graphite:
   - memcached:memcached
 
 grafana2:
- image: schabrolles/grafana2_ppc64le:alpha
+ image: schabrolles/grafana2_ppc64le:beta
  name: grafana2
  hostname: grafana2
  volumes: 
@@ -23,7 +23,7 @@ grafana2:
  links:
   - graphite:graphite
  ports:
-  - "80:3000"
+  - "80:80"
 
 statsd:
  image: schabrolles/statsd_ppc64le

@@ -16,7 +16,7 @@ graphite:
 
 
 grafana2:
- image: schabrolles/grafana2:alpha
+ image: schabrolles/grafana2:beta
  name: grafana2
  hostname: grafana2
  volumes: 
