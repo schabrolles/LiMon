@@ -3,9 +3,9 @@
 # s.chabrolles@fr.ibm.com
 #########################
 
-STATSD_SERVER=10.3.84.51
+STATSD_SERVER="graphite"
 STATSD_PORT=8125
-HOSTNAME="ACG_`hostname -s`_collectd"
+HOSTNAME="`hostname -s`_collectd"
 
 ################################################################
 
