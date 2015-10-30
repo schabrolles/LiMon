@@ -15,7 +15,7 @@ graphite:
   - memcached:memcached
 
 grafana2:
- image: schabrolles/grafana2_ppc64le:beta2.1
+ image: schabrolles/grafana2_ppc64le:2.5
  name: grafana2
  hostname: grafana2
  volumes: 
