@@ -38,7 +38,7 @@ case $SYS_ARCH in
 	x86_64) curl -sSL https://get.docker.com/ubuntu/ | sudo sh
 	;;
 	
-	ppc64le) sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install ntp docker.io
+	ppc64le) sudo cp docker.list /etc/apt/sources.list.d && sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install ntp docker.io --force-yes
 	;;
 	
 	*) echo "Arch $SYS_ARCH not supported" 
