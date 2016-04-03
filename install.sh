@@ -52,7 +52,8 @@ sudo systemctl start docker
 
 
 sudo apt-get install -y python-pip python-whisper
-sudo pip install -U fig 
+sudo -H pip install -U setuptools
+sudo -H pip install -U fig 
 
 echo
 echo "############################################"
@@ -71,19 +72,19 @@ sudo cp LiMon_rc /etc/init.d/LiMon
 sudo chmod 755 /etc/init.d/LiMon
 sudo update-rc.d LiMon defaults
 
-#echo
-#echo "############################################"
-#echo "Install debug tool nsenter"
-#echo
+echo
+echo "############################################"
+echo "Install debug tool nsenter"
+echo
 
-#cd /tmp
-#curl https://www.kernel.org/pub/linux/utils/util-linux/v2.24/util-linux-2.24.tar.gz | tar -zxf-
-#cd util-linux-2.24
-#./configure --without-ncurses
-#make nsenter
-#[ $? -eq 0 ] && (echo ; echo "success" )
-#sudo cp nsenter /usr/local/bin
-#[ $? -eq 0 ] && (echo ; echo "success" )
+cd /tmp
+curl https://www.kernel.org/pub/linux/utils/util-linux/v2.24/util-linux-2.24.tar.gz | tar -zxf-
+cd util-linux-2.24
+./configure --without-ncurses
+make nsenter
+[ $? -eq 0 ] && (echo ; echo "success" )
+sudo cp nsenter /usr/local/bin
+[ $? -eq 0 ] && (echo ; echo "success" )
 
 
 
