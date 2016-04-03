@@ -1,9 +1,9 @@
-#!/bin/sh
+#!/bin/ksh
 #
 # s.chabrolles@fr.ibm.com
 #############################################
 
-yum --enablerepo epel install -y collectd collectd-sensors
+yum --enablerepo epel install -y collectd collectd-sensors collectd-virt
 
 semodule -i mypol.pp
 
