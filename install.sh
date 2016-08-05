@@ -54,8 +54,9 @@ sudo systemctl start docker
 
 
 sudo apt-get install -y python-pip python-whisper
+sudo -H pip install --upgrade pip
 sudo -H pip install -U setuptools
-sudo -H pip install -U fig 
+sudo -H pip install -U docker-compose
 
 echo
 echo "############################################"
@@ -68,11 +69,10 @@ echo
 
 [ ! -d /var/lib/graphite/storage/whisper ] && sudo mkdir -p /var/lib/graphite/storage/whisper
 
-[ ! -d /var/lib/influxdb ] && sudo mkdir -p /var/lib/influxdb
-sudo cp influxdb.conf /var/lib/influxdb
+sudo tar -C /var/lib -zxvf influxdb.tar.gz
 
 [ ! -d /etc/LiMon ] && sudo mkdir -p /etc/LiMon
-sudo cp fig.yml_${SYS_ARCH} /etc/LiMon/fig.yml
+sudo cp docker-compose.yml_${SYS_ARCH} /etc/LiMon/docker-compose.yml
 
 sudo cp LiMon_rc /etc/init.d/LiMon
 sudo chmod 755 /etc/init.d/LiMon
@@ -99,7 +99,7 @@ echo "############################################"
 echo "LiMon Creation ............ please Wait"
 echo
 
-sudo fig -f /etc/LiMon/fig.yml -p LiMon up -d
+sudo docker-compose -f /etc/LiMon/docker-compose.yml up -d
 
 sudo service LiMon status
 
