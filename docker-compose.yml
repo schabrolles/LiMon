@@ -1,0 +1,45 @@
+memcached:
+ image: docker.io/schabrolles/memcached_ppc64le
+ hostname: memcached
+
+graphite:
+ image: docker.io/schabrolles/graphite_ppc64le
+ hostname: graphite
+ volumes:
+  - /var/lib/graphite/storage/whisper:/opt/graphite/storage/whisper
+ ports:
+  - "2003:2003"
+ links:
+  - memcached:memcached
+
+influxdb:
+ image: docker.io/schabrolles/influxdb_ppc64le:0.13.0
+ hostname: influxdb
+ volumes:
+  - /var/lib/influxdb:/var/lib/influxdb
+ ports:
+  - "8083:8083"
+  - "8086:8086"
+ command: influxd -config /var/lib/influxdb/influxdb.conf
+
+grafana3:
+ image: docker.io/schabrolles/grafana3_ppc64le:3.1.1
+ hostname: grafana3
+ volumes:
+  - /var/lib/grafana:/var/lib/grafana
+ links:
+  - graphite:graphite
+  - memcached:memcached
+  - influxdb:influxdb
+ ports:
+  - "80:80"
+
+statsd:
+ image: docker.io/schabrolles/statsd_ppc64le
+ hostname: statsd
+ links:
+  - graphite:graphite
+ ports:
+  - "8125:8125/udp"
+  - "8126:8126"
+

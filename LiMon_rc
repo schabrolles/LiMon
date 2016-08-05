@@ -13,40 +13,37 @@ set -e
 
 export PATH=/sbin:/bin:/usr/sbin:/usr/bin:/usr/local/sbin:/usr/local/bin
 
-figconf=/etc/LiMon/fig.yml
+conf=/etc/LiMon/docker-compose.yml
 
 case "$1" in
 	start)
-		[ -f $figconf ] && fig -f $figconf -p LiMon start
+		[ -f $conf ] && docker-compose -f $conf -p LiMon up -d --force-recreate
 		;;
 
 	stop)
-		[ -f $figconf ] && fig -f $figconf -p LiMon stop	
+		[ -f $conf ] && docker-compose -f $conf -p LiMon stop	
 		;;
 
 	restart)
-		[ -f $figconf ] && fig -f $figconf -p LiMon restart
+		[ -f $conf ] && docker-compose -f $conf -p LiMon up -d --force-recreate
 		;;
 
 	logs)
-		[ -f $figconf ] && fig -f $figconf -p LiMon logs
+		[ -f $conf ] && docker-compose -f $conf -p LiMon logs
 		;;
 
 	check)
 		
-		[ -f $figconf ] && fig -f $figconf -p LiMon ps
+		[ -f $conf ] && docker-compose -f $conf -p LiMon ps
 		;;
 	
 	recreate)
-                if [ -f $figconf ] ; then
-                        fig -f $figconf -p LiMon stop
-                        fig -f $figconf -p LiMon up -d
-                fi
-                ;;
+                [ -f $conf ] && docker-compose -f $conf -p LiMon up -d --force-recreate
+		;;
 
         upgrade)
-                if [ -f $figconf ] ; then
-                        fig -f $figconf pull
+                if [ -f $conf ] ; then
+                        [ -f $conf ] && docker-compose -f $conf -p LiMon pull
                         echo
                         echo "if one image was updated, please run \"$0 recreate\""
                         echo
