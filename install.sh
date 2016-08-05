@@ -6,6 +6,8 @@
 # v1.0 s.chabrolles@fr.ibm.com
 # v1.5 Added mutli-arch (x86_64 ppc64le) support
 # v2.0 migrate to grafana 2.0 and ubuntu 15.04	
+# v3.0 migrate to grafana 3.0 and ubuntu 16.04
+# v3.1 migrate to grafana 3.1 and add influxdb 0.13.0
 ##################################################################################### 
 
 . /etc/os-release
@@ -63,7 +65,11 @@ echo
 
 [ ! -d /var/lib/grafana/dashboards ] && sudo mkdir -p /var/lib/grafana/dashboards
 [ -f grafana.db ] && sudo cp -rp grafana.db /var/lib/grafana
+
 [ ! -d /var/lib/graphite/storage/whisper ] && sudo mkdir -p /var/lib/graphite/storage/whisper
+
+[ ! -d /var/lib/influxdb ] && sudo mkdir -p /var/lib/influxdb
+sudo cp influxdb.conf /var/lib/influxdb
 
 [ ! -d /etc/LiMon ] && sudo mkdir -p /etc/LiMon
 sudo cp fig.yml_${SYS_ARCH} /etc/LiMon/fig.yml
