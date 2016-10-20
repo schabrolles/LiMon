@@ -1,3 +1,9 @@
 GCcount		value:GAUGE:0:U
 Interval	value:GAUGE:0:U
 Duration	value:GAUGE:0:U
+
+pool_limit_hit	value:GAUGE:0:U
+pool_total_size value:GAUGE:0:U
+stored_pages	value:GAUGE:0:U
+written_back_pages	value:GAUGE:0:U
+bops		value:GAUGE:0:U
