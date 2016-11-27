@@ -7,5 +7,3 @@ Prepare a Linux on Power VM witn ubuntu (16.04 prefered) and clone this reposito
 
 Then, enter in the LiMon directory and start installation.   
 `./install.sh`
-
-More to comme ...

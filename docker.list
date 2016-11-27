@@ -1,1 +1,2 @@
+#repository used for ubuntu ppc64le < 15.10 which does not have docker 
 deb http://ftp.unicamp.br/pub/ppc64el/ubuntu/14_04/docker-ppc64el trusty main
