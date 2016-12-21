@@ -13,7 +13,7 @@ graphite:
   - memcached:memcached
 
 influxdb:
- image: docker.io/schabrolles/influxdb_ppc64le
+ image: docker.io/schabrolles/influxdb_ppc64le:1.1.1
  hostname: influxdb
  volumes:
   - /var/lib/influxdb:/var/lib/influxdb
@@ -23,7 +23,7 @@ influxdb:
  command: influxd -config /var/lib/influxdb/influxdb.conf
 
 grafana4:
- image: docker.io/schabrolles/grafana4_ppc64le
+ image: docker.io/schabrolles/grafana4_ppc64le:4.0.2
  hostname: grafana4
  volumes:
   - /var/lib/grafana:/var/lib/grafana
