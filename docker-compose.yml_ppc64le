@@ -22,9 +22,9 @@ influxdb:
   - "8086:8086"
  command: influxd -config /var/lib/influxdb/influxdb.conf
 
-grafana4:
- image: docker.io/schabrolles/grafana4_ppc64le:4.0.2
- hostname: grafana4
+grafana:
+ image: docker.io/schabrolles/grafana_ppc64le:4.1.1-beta1
+ hostname: grafana
  volumes:
   - /var/lib/grafana:/var/lib/grafana
  links:
