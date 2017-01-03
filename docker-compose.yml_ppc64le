@@ -6,7 +6,10 @@ graphite:
  image: docker.io/schabrolles/graphite_ppc64le
  hostname: graphite
  volumes:
-  - /var/lib/graphite/storage/whisper:/opt/graphite/storage/whisper
+  - /var/lib/graphite/storage:/opt/graphite/storage
+  - /var/lib/graphite/nginx/conf:/etc/nginx
+  - /var/lib/graphite/nginx/log:/var/log
+  - /var/lib/graphite/conf:/opt/graphite/conf
  ports:
   - "2003:2003"
  links:
