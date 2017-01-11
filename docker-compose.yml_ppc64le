@@ -7,9 +7,6 @@ graphite:
  hostname: graphite
  volumes:
   - /var/lib/graphite/storage:/opt/graphite/storage
-  - /var/lib/graphite/nginx/conf:/etc/nginx
-  - /var/lib/graphite/nginx/log:/var/log
-  - /var/lib/graphite/conf:/opt/graphite/conf
  ports:
   - "2003:2003"
  links:
@@ -26,7 +23,7 @@ influxdb:
  command: influxd -config /var/lib/influxdb/influxdb.conf
 
 grafana:
- image: docker.io/schabrolles/grafana_ppc64le:4.1.1-beta1
+ image: docker.io/schabrolles/grafana_ppc64le:4.1.0
  hostname: grafana
  volumes:
   - /var/lib/grafana:/var/lib/grafana
