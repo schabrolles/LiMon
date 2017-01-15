@@ -32,12 +32,8 @@ User --> [Grafana] <-- [Gaphite] <----------- Data from Servers (collectd).
              |________________ [InfluxDB] <-- Data from Servers (RestAPI).
 ```
 
-To make it easier to install, all those different component were "containerized"
- with docker.
- 
- | service name | (host port):(docker port) |
- |:------------:|:-------------------------:| 
- |grafana|
+To make it easier to install, all those different component were "containerized" with docker.
+ A **docker-compose** file (docker-compose.yml) contains all the information needed to start everything up in the right way for you (network port redirection, external volumes, container linkage). 
  
 ## 1. Installation
 
