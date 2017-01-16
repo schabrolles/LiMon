@@ -47,7 +47,7 @@ Here is the way to install your Linux Monitoring system (LiMon).
 `git clone https://github.com/schabrolles/LiMon.git`
 
 
-* Then, enter in the LiMon directory and start installation.   
+* Then, enter in the `LiMon` directory and start installation.   
 `./install.sh`
 
 This install shell script will :  
