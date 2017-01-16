@@ -17,7 +17,7 @@ Statsd is a network daemon that listen for statistics like counters sended over 
 
 4. **Influxdb** [https://www.influxdata.com/time-series-platform/influxdb](https://www.influxdata.com/time-series-platform/influxdb/).  
 InfluxDB is a timeserie database used in **LiMon** as a datasource for Grafana. Compare to Graphite, its query system is more SQL based but less convenient and powerfull than **graphite**. On the other hand, it has a better scalability (less IOs) so it can sustain higher refresh rate than Graphite.  
-*(__Note:__ you can use both **Graphite** and **InfluxDB** datasource at the same time in **Grafana** to leverage best capabilities of each datasource system.)*
+*(__Note:__ you can use both __Graphite__ and **InfluxDB** datasource at the same time in __Grafana__ to leverage best capabilities of each datasource system.)*
 
 5. **Memcached** [https://memcached.org/](https://memcached.org/).  
 Memcached is an open source in-memory object caching system. In our case, we are using it to store graphite-web query results to improve performance during graphics manipulation in grafana.
@@ -64,7 +64,7 @@ Use `service LiMon [start|stop|restart]` to controle LiMon services.
 Data are available directly from the host:
 * grafana data: `/var/lib/grafana`
 * graphite data: `/var/lib/graphite`
-* InfluxDB data: `/var/lib/InfluxDB`
+* InfluxDB data: `/var/lib/influxdb`
 
 
 ## 3. Configuration
