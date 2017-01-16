@@ -70,6 +70,7 @@ echo
 [ -f grafana.db ] && sudo cp -rp grafana.db /var/lib/grafana
 
 [ ! -d /var/lib/graphite/storage/whisper ] && sudo mkdir -p /var/lib/graphite/storage/whisper
+[ ! -d /var/lib/graphite/storage/log/webapp ] && sudo mkdir -p /var/lib/graphite/storage/log/webapp
 
 sudo tar -C /var/lib -zxvf influxdb.tar.gz
 
