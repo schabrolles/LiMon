@@ -54,7 +54,7 @@ This install shell script will :
 * Update ubuntu
 * Install docker binary
 * Install docker-compose
-* Download and Confiigure grafana, graphite, statsd, InfluxDB and Memcached based on docker-compose Configuration file ``/etc/LiMon/docker-compose.yml`
+* Download and Confiigure grafana, graphite, statsd, InfluxDB and Memcached based on docker-compose Configuration file /etc/LiMon/docker-compose.yml`
 * Install a LiMon service file to manage LiMon services.
 * Start everything with `docker-compose up`
 
