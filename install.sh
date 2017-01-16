@@ -1,14 +1,14 @@
 #!/bin/sh
 #
-# LiMon Server Install Script 
+# LiMon Server Install Script
 #
 #####################################################################################
 # v1.0 s.chabrolles@fr.ibm.com
 # v1.5 Added mutli-arch (x86_64 ppc64le) support
-# v2.0 migrate to grafana 2.0 and ubuntu 15.04	
+# v2.0 migrate to grafana 2.0 and ubuntu 15.04
 # v3.0 migrate to grafana 3.0 and ubuntu 16.04
 # v3.1 migrate to grafana 3.1 and add influxdb 0.13.0
-##################################################################################### 
+#####################################################################################
 
 . /etc/os-release
 
@@ -36,14 +36,14 @@ echo
 
 USER=`whoami`
 
-case $SYS_ARCH in 
+case $SYS_ARCH in
 	x86_64) curl -sSL https://get.docker.com/ubuntu/ | sudo sh
 	;;
-	
+
 	ppc64le) sudo cp docker.list /etc/apt/sources.list.d && sudo apt-get update && sudo apt-get -y upgrade && sudo apt-get -y install ntp docker.io --force-yes
 	;;
-	
-	*) echo "Arch $SYS_ARCH not supported" 
+
+	*) echo "Arch $SYS_ARCH not supported"
 	exit 1
 	;;
 esac
@@ -65,6 +65,8 @@ echo
 
 
 [ ! -d /var/lib/grafana/dashboards ] && sudo mkdir -p /var/lib/grafana/dashboards
+[ ! -d /var/lib/grafana/data/plugins ] && sudo mkdir -p /var/lib/grafana/data/plugins
+[ ! -d /var/lib/grafana/data/log ] && sudo mkdir -p /var/lib/grafana/data/log
 [ -f grafana.db ] && sudo cp -rp grafana.db /var/lib/grafana
 
 [ ! -d /var/lib/graphite/storage/whisper ] && sudo mkdir -p /var/lib/graphite/storage/whisper
@@ -103,7 +105,7 @@ sudo docker-compose -f /etc/LiMon/docker-compose.yml up -d
 
 sudo service LiMon status
 
-echo 
+echo
 echo "Installation complete. open a browser and connect to your server IP with http://<your_server_ip>"
 
 echo
