@@ -8,7 +8,7 @@ SMT=`lscpu | awk '/^Thread/ { print $NF}'`
 #CORES=`lscpu | awk '/^Core/ { CORESOCKET=$NF }; /^Socket/ { SOCKET=$NF } END { print CORESOCKET * SOCKET }'`
 CORES=`/usr/sbin/ppc64_cpu --cores-on | awk '{ print $NF }'`
 NUMA_NODE=`lscpu | awk ' /NUMA node\(s\)/ { print $NF}'`
-FREQ=`grep -U MHz /proc/cpuinfo | sort -u | awk '{ split($NF,FREQ,".") ; print FREQ[1]*1000000}'`
+FREQ=$(cat /sys/bus/cpu/devices/cpu0/cpufreq/cpuinfo_nominal_freq)
 
 echo "SMT=$SMT
 CORES=$CORES
