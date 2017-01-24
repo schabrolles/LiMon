@@ -84,17 +84,20 @@ def checkVMs(conn):
                 logging.info("{} guests defined".format(len(New_AllDomains)))
                 UPDATE_GUEST_NUM = 1
 
-    logging.debug("Check for VM stoped")
+    logging.debug("Check for VM stopped")
     for VM in Active:
-        if VM not in New_Active:
-            logging.info("VM Stopped: {}".format(VM))
-            InfluxDB_alert(
-                "alert_guest",
-                "guest_stopped",
-                "host=" + HOSTNAME + ",VM=" + VM,
-                VM + " stopped")
-            logging.info("{} guests running".format(len(New_Active)))
-            UPDATE_GUEST_NUM = 1
+        if "guestfs" in VM:
+            Active.remove(VM)
+        else:
+            if VM not in New_Active:
+                logging.info("VM Stopped: {}".format(VM))
+                InfluxDB_alert(
+                    "alert_guest",
+                    "guest_stopped",
+                    "host=" + HOSTNAME + ",VM=" + VM,
+                    VM + " stopped")
+                logging.info("{} guests running".format(len(New_Active)))
+                UPDATE_GUEST_NUM = 1
 
     logging.debug("Check for VM deleted")
     for VM in AllDomains:
@@ -113,15 +116,18 @@ def checkVMs(conn):
 
     logging.debug("Check for VM started")
     for VM in New_Active:
-        if VM not in Active:
-            logging.info("VM Started: {}".format(VM))
-            InfluxDB_alert(
-                "alert_guest",
-                "guest_started",
-                "host=" + HOSTNAME + ",VM=" + VM,
-                VM + " started")
-            logging.info("{} guests running".format(len(New_Active)))
-            UPDATE_GUEST_NUM = 1
+        if "guestfs" in VM:
+            Active.remove(VM)
+        else:
+            if VM not in Active:
+                logging.info("VM Started: {}".format(VM))
+                InfluxDB_alert(
+                    "alert_guest",
+                    "guest_started",
+                    "host=" + HOSTNAME + ",VM=" + VM,
+                    VM + " started")
+                logging.info("{} guests running".format(len(New_Active)))
+                UPDATE_GUEST_NUM = 1
 
     if UPDATE_GUEST_NUM == 1:
         DATA = "guest_num,host=" + HOSTNAME + \
