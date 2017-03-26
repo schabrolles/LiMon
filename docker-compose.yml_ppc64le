@@ -23,7 +23,7 @@ influxdb:
  command: influxd -config /var/lib/influxdb/influxdb.conf
 
 grafana:
- image: docker.io/schabrolles/grafana_ppc64le:4.1.1
+ image: docker.io/schabrolles/grafana_ppc64le:4.2.0
  hostname: grafana
  volumes:
   - /var/lib/grafana:/var/lib/grafana
