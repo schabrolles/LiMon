@@ -3,7 +3,7 @@ memcached:
  hostname: memcached
 
 graphite:
- image: docker.io/schabrolles/graphite_ppc64le:0.9.15
+ image: docker.io/schabrolles/graphite_ppc64le:1.0.0-pre1
  hostname: graphite
  volumes:
   - /var/lib/graphite/storage:/opt/graphite/storage
