@@ -2,11 +2,20 @@ memcached:
  image: docker.io/schabrolles/memcached_ppc64le
  hostname: memcached
 
+prometheus:
+ image: docker.io/schabrolles/prometheus_ppc64le:2.0.0
+ hostname: prometheus
+ volumes:
+  - /data/prometheus:/prometheus
+  - /etc/prometheus.yml:/etc/prometheus/prometheus.yml
+ ports:
+  - "9090:9090"
+
 graphite:
  image: docker.io/schabrolles/graphite_ppc64le:1.0.0-pre1
  hostname: graphite
  volumes:
-  - /var/lib/graphite/storage:/opt/graphite/storage
+  - /data/graphite/storage:/opt/graphite/storage
  ports:
   - "2003:2003"
  links:
@@ -16,7 +25,7 @@ influxdb:
  image: docker.io/schabrolles/influxdb_ppc64le:1.1.1
  hostname: influxdb
  volumes:
-  - /var/lib/influxdb:/var/lib/influxdb
+  - /data/influxdb:/var/lib/influxdb
  ports:
   - "8083:8083"
   - "8086:8086"
@@ -26,8 +35,9 @@ grafana:
  image: docker.io/schabrolles/grafana_ppc64le:4.6.0
  hostname: grafana
  volumes:
-  - /var/lib/grafana:/var/lib/grafana
+  - /data/grafana:/var/lib/grafana
  links:
+  - prometheus:prometheus
   - graphite:graphite
   - memcached:memcached
   - influxdb:influxdb
